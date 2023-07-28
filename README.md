@@ -4,6 +4,16 @@
 
 Create a template for my picky favorite design patterns and libraries/frameworks for a microservice. Will be using example models and mock data for testing
 
+## Prereqs
+
+* Postgres
+* Python (using version `Python 3.10.5`)
+* Pyenv (reccomended)
+* Virtualenv (reccomended)
+
+1. Create a new python virtual environment for this project: `pyenv virtualenv flask-api-project`
+2. Activate the environment: `pyenv activate flask-api-project`
+
 ### Iterations
 
 #### Iteration 1
