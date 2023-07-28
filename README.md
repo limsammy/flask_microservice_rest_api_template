@@ -94,3 +94,55 @@ def app():
     app = create_app(test_config="api.config.TestingConfig")
     yield app
 ```
+
+Before we continue, let's ignore the test_config paramater value for a moment.
+
+Let's implement a very simple test for the above fixture: we simply want to know if the `app` fixture returns an object (we do not specify type at all, we simply want to assertain that `app` exists and is not `None`): `mkdir app/tests && touch app/tests/test_fixtures.py`
+
+```python
+import pytest
+
+
+def test_create_app_fixture(app):
+    assert app
+```
+
+Run `pytest` in your terminal. You should see a single passing test!
+
+```shell
+$ pytest
+================================================= test session starts ==================================================platform linux -- Python 3.10.5, pytest-7.4.0, pluggy-1.2.0
+rootdir: /home/sam/projects/flask_api_template
+plugins: anyio-3.6.2
+collected 1 item
+
+app/api/tests/test_fixtures.py .                                                                                 [100%]
+
+================================================== 1 passed in 0.07s ===================================================
+```
+
+Now that we have the basics of our testing environment set up, let's create that test_config we set above in the app fixture. This will become much more important later when we need multiple environments (`prod`, `dev`, `test`, `stage`): `touch app/api/config.py`
+
+Create the configuration file: `touch app/api/config.py` (This is a flask configuration file. Read more [here](https://flask.palletsprojects.com/en/2.3.x/config/) for more options and configurations)
+
+First, we will create the base `Config` class our various environment-specific configurations will inherit from:
+
+```python
+import os
+
+
+class Config(object):
+    DEBUG = os.getenv("DEBUG", default=True)
+    TESTING = (
+        False  # False by default. When using the below TestingConfig we switch this one
+    )
+    CSRF_ENABLED = True  # Enable CSRF protection. We will discuss this more later
+    SECRET_KEY = "change-in-prod"  # Our default SECRET_KEY we will use for debug, dev. test environments
+```
+
+Next, we simply want to switch our `TESTING` variable to `True` (put this underneath our `Config` class):
+
+```python
+class TestingConfig(Config):
+    TESTING = True
+```
