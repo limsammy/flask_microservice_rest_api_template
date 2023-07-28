@@ -205,7 +205,23 @@ def create_app(test_config=None) -> Flask:
 
 Let's update our test to check for `API_TITLE` and `API_VERSION`:
 
-``````
+```python
+def test_create_app_fixture(app):
+    assert app is not None
+    assert app.name == "api"
+    # These config vars are set in app/api/__init__.py
+    assert app.config["API_TITLE"] == "Flask API"
+    assert app.config["API_VERSION"] == "0.1.0"
+```
+
+Run `pytest` and everything should pass.
+
+---
+
+Now that we have some tests running and passing, let's implement our models. We'll start with the User model.
+
+First let's implement our database (we will use [SQLAlchemy](https://www.sqlalchemy.org/) for our ORM (the thing that maps a database object to a Python class, our model)). Install sqlalchemy and it's flask extension: `pip install sqlalchemy flask-sqlalchemy`
+
 
 Create a `models` module: `touch app/api/models.py`
 
