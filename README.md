@@ -71,3 +71,9 @@ If we send a GET request to the dev server from our browser (naviage to the URL)
 ```
 
 *Note:* We are getting a 404 as we have not implemented any routes to handle requests to the index (`/`)
+
+---
+
+Now that we have a very early app actually running, let's implement our testing framework.
+
+Install pytest: `pip install pytest`
