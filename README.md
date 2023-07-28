@@ -181,4 +181,32 @@ Run `pytest` to ensure everything passes.
 
 Now that we have some tests running and passing, let's implement our models. We'll start with the User model.
 
-First let's implement our database (we will use [SQLAlchemy](https://www.sqlalchemy.org/) for our ORM (the thing that maps a database object to a Python class, our model)). Install sqlalchemy: `pip install sqlalchemy`
+First let's implement our database (we will use [SQLAlchemy](https://www.sqlalchemy.org/) for our ORM (the thing that maps a database object to a Python class, our model)). Install sqlalchemy and it's flask extension: `pip install sqlalchemy flask-sqlalchemy`
+
+Navigate back to the `app/api/__init__.py` module. Now that we've added multiple environmental specific testing, let's add some checks for which configuration to use. We will also set our global config variables after that logic:
+
+```python
+def create_app(test_config=None) -> Flask:
+    ...
+    # Check for correct config
+    if test_config is None:
+        if app.config["ENV"] == "production":
+            app.config.from_object("api.config.ProductionConfig")
+        else:
+            app.config.from_object("api.config.ProductionConfig")
+    else:
+        app.config.from_object(test_config)
+
+    app.config["API_TITLE"] = "Flask API"
+    app.config["API_VERSION"] = "0.1.0"
+    
+    return app
+```
+
+Let's update our test to check for `API_TITLE` and `API_VERSION`:
+
+``````
+
+Create a `models` module: `touch app/api/models.py`
+
+Start by creating a test for a User model, with the attributes we want according to the tables we modeled above (ignore the relationships for now):
