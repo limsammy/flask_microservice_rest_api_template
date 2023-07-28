@@ -33,3 +33,18 @@ FLASK_RUN_PORT=8000
 * We set our environment to development -- this will give debug information and stack traces for debugging purposes
 * We set `FLASK_APP` to the `./app/api` module (this is where the flask app actually "lives")
 * Set port for debug server (8000) `FLASK_RUN_PORT=8000`
+
+Next, we create the api module under the app directory: `touch app/api/__init__.py`. This tells python that the `api` directory is a python *module*
+
+We are using an app factory building pattern, so we want to define our `api` module with the following:
+
+```python
+from flask import Flask
+
+
+def create_app(test_config=None) -> Flask:
+    """App factory pattern with context manager"""
+    app = Flask(__name__, instance_relative_config=True)
+
+    return app
+```
