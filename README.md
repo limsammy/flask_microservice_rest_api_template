@@ -146,3 +146,23 @@ Next, we simply want to switch our `TESTING` variable to `True` (put this undern
 class TestingConfig(Config):
     TESTING = True
 ```
+
+Let's add another fixture, for the test_client of our app:
+
+```python
+@pytest.fixture
+def client(app):
+    """Fixture for accessing client instance in tests"""
+    return app.test_client()
+```
+
+And a corresponding test:
+
+```python
+def test_app_client_fixture(client):
+    assert client is not None
+    assert client.application.name == "api"
+```
+
+Run `pytest` to ensure everything passes.
+
