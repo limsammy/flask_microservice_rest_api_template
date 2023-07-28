@@ -10,6 +10,28 @@ Create a template for my picky favorite design patterns and libraries/frameworks
 * Python (using version `Python 3.10.5`)
 * Pyenv (reccomended)
 * Virtualenv (reccomended)
+* Flask
+* SQLAlchemy
+* Marshmallow
+
+## Marshmallow
+
+Why do we use marshmallow? It allows us to control our JSON output/input in a very clean way:
+
+* Core features:
+  * Validate
+  * Serialize
+  * Deserialize
+* Marshmallow makes no assumption about web frameworks or database layers. It will work with just about any ORM, ODM, or no ORM at all.
+
+### Advanced Schema Nesting
+
+* Most serialization libraries provide some means for nesting schemas within each other, but they often fail to meet common use cases in clean way. Marshmallow aims to fill these gaps by adding a few nice features for nesting schemas:
+* You can specify which subset of fields to include on nested schemas.
+* Two-way nesting. Two different schemas can nest each other.
+* Self-nesting. A schema can be nested within itself.
+
+## Starting dev
 
 1. Create a new python virtual environment for this project: `pyenv virtualenv flask-api-project`
 2. Activate the environment: `pyenv activate flask-api-project`
