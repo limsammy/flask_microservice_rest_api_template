@@ -14,6 +14,13 @@ Create a template for my picky favorite design patterns and libraries/frameworks
 1. Create a new python virtual environment for this project: `pyenv virtualenv flask-api-project`
 2. Activate the environment: `pyenv activate flask-api-project`
 
+
+<!-- TODO: Implement static typing throughout app and tests -->
+## Static Typing
+
+Using [MyPy](https://mypy-lang.org/) library for static typing: `pip install mypy`
+
+
 ### Iterations
 
 #### Iteration 1
@@ -179,10 +186,6 @@ Run `pytest` to ensure everything passes.
 
 ---
 
-Now that we have some tests running and passing, let's implement our models. We'll start with the User model.
-
-First let's implement our database (we will use [SQLAlchemy](https://www.sqlalchemy.org/) for our ORM (the thing that maps a database object to a Python class, our model)). Install sqlalchemy and it's flask extension: `pip install sqlalchemy flask-sqlalchemy`
-
 Navigate back to the `app/api/__init__.py` module. Now that we've added multiple environmental specific testing, let's add some checks for which configuration to use. We will also set our global config variables after that logic:
 
 ```python
@@ -226,3 +229,7 @@ First let's implement our database (we will use [SQLAlchemy](https://www.sqlalch
 Create a `models` module: `touch app/api/models.py`
 
 Start by creating a test for a User model, with the attributes we want according to the tables we modeled above (ignore the relationships for now):
+
+```pyhon
+from api import db
+```
