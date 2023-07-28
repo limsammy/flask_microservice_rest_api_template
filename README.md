@@ -77,3 +77,20 @@ If we send a GET request to the dev server from our browser (naviage to the URL)
 Now that we have a very early app actually running, let's implement our testing framework.
 
 Install pytest: `pip install pytest`
+
+Create an testing configuration file where we will define fixtures: `touch app/conftest.py`
+
+We will now create a fixture for our app factory. We will import our `create_app()` function and use it to create an app instance; we `yield` the instance to introduce the object into the individual test's scope
+
+```python
+import pytest
+
+from api import create_app
+
+
+@pytest.fixture
+# TODO: Add typing hint (flask.Flask ?)
+def app():
+    app = create_app(test_config="api.config.TestingConfig")
+    yield app
+```
