@@ -164,5 +164,16 @@ def test_app_client_fixture(client):
     assert client.application.name == "api"
 ```
 
+Let's add one more test to make sure our client fixture can send requests. Make a new file: `touch app/api/tests/text_client_requests.py`
+
+```python
+import pytest
+
+
+def test_request_example(client):
+    response = client.get("/")
+    assert response.status_code == 404  # We will remediate this later as we add routing.
+```
+
 Run `pytest` to ensure everything passes.
 
