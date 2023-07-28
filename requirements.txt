@@ -39,6 +39,7 @@ executing==1.2.0
 fastjsonschema==2.16.2
 filelock==3.8.0
 Flask==2.3.2
+Flask-SQLAlchemy==3.0.5
 flatbuffers==23.1.21
 fonttools==4.38.0
 fqdn==1.5.1
