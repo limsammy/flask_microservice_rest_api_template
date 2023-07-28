@@ -34,9 +34,11 @@ FLASK_RUN_PORT=8000
 * We set `FLASK_APP` to the `./app/api` module (this is where the flask app actually "lives")
 * Set port for debug server (8000) `FLASK_RUN_PORT=8000`
 
+Now, install `flask` and `python-dotenv`: `pip install flask python-dotenv` (Or if you've already downloaded the project's dependecies, you can skip this step (`pip install -r requirements`))
+
 Next, we create the api module under the app directory: `touch app/api/__init__.py`. This tells python that the `api` directory is a python *module*
 
-We are using an app factory building pattern, so we want to define our `api` module with the following:
+We are using an [app factory](https://flask.palletsprojects.com/en/2.3.x/patterns/appfactories/) building pattern, so we want to define our `api` module with the following:
 
 ```python
 from flask import Flask
@@ -48,3 +50,24 @@ def create_app(test_config=None) -> Flask:
 
     return app
 ```
+
+Let's see if we can start a server, run the following in your terminal: `flask run`
+
+You should see the following output:
+
+```shell
+flask run
+ * Serving Flask app 'app/api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:8000
+Press CTRL+C to quit
+```
+
+If we send a GET request to the dev server from our browser (naviage to the URL) runnong on: `http://127.0.0.1:8000`, you should see the following output in your terminal:
+
+```shell
+127.0.0.1 - - [27/Jul/2023 17:46:52] "GET / HTTP/1.1" 404 -
+```
+
+*Note:* We are getting a 404 as we have not implemented any routes to handle requests to the index (`/`)
