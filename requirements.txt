@@ -52,6 +52,7 @@ google-auth==2.16.0
 google-auth-oauthlib==0.4.6
 google-pasta==0.2.0
 goop==0.2
+greenlet==2.0.2
 grpcio==1.51.1
 h5py==3.8.0
 htmlmin==0.1.12
@@ -170,6 +171,7 @@ six==1.16.0
 sniffio==1.3.0
 soupsieve==2.3.2.post1
 spark-parser==1.8.9
+SQLAlchemy==2.0.19
 stack-data==0.6.2
 tensorboard==2.11.2
 tensorboard-data-server==0.6.1

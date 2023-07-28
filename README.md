@@ -177,3 +177,8 @@ def test_request_example(client):
 
 Run `pytest` to ensure everything passes.
 
+---
+
+Now that we have some tests running and passing, let's implement our models. We'll start with the User model.
+
+First let's implement our database (we will use [SQLAlchemy](https://www.sqlalchemy.org/) for our ORM (the thing that maps a database object to a Python class, our model)). Install sqlalchemy: `pip install sqlalchemy`
